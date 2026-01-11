@@ -21,6 +21,7 @@
   "homepage": "https://github.com/satyajeetpatra1/shoppy-globe-node-backend#readme",
   "dependencies": {
     "express": "^5.2.1",
+    "mongoose": "^9.1.2",
     "nodemon": "^3.1.11"
   }
 }
