@@ -4,13 +4,14 @@ import {
   removeFromCart,
   updateCartItem,
 } from "../controllers/Cart.controller.js";
+import { authenticate } from "../middlwares/middlewares.js";
 
 export default function CartRoute(app) {
-  app.get("/cart", getCartItems);
+  app.get("/cart", authenticate, getCartItems);
 
-  app.post("/cart", addToCart);
+  app.post("/cart", authenticate, addToCart);
 
-  app.put("/cart/:id", updateCartItem);
+  app.put("/cart/:id", authenticate, updateCartItem);
 
-  app.delete("/cart/:id", removeFromCart);
+  app.delete("/cart/:id", authenticate, removeFromCart);
 }
