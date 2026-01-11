@@ -1,6 +1,7 @@
 import express from "express";
 import connectDB from "./config/connectDB.js";
 import ProductRoute from "./routes/Product.route.js";
+import CartRoute from "./routes/Cart.route.js";
 
 connectDB();
 
@@ -11,6 +12,8 @@ app.get("/", (req, res) => {
 });
 
 ProductRoute(app);
+
+CartRoute(app);
 
 const PORT = 8080;
 app.listen(PORT, () => {
