@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/satyajeetpatra1/shoppy-globe-node-backend/issues"
   },
-  "homepage": "https://github.com/satyajeetpatra1/shoppy-globe-node-backend#readme"
+  "homepage": "https://github.com/satyajeetpatra1/shoppy-globe-node-backend#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11"
+  }
 }
