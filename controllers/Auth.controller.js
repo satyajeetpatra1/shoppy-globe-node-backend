@@ -6,6 +6,12 @@ export async function registerUser(req, res) {
   try {
     const { name, email, password } = req.body;
 
+    if (!name || !email || !password) {
+      return res
+        .status(400)
+        .json({ message: "name, email, and password are required" });
+    }
+
     const existingUser = await UserModel.findOne({ email });
 
     if (existingUser) {
@@ -29,6 +35,12 @@ export async function registerUser(req, res) {
 export async function loginUser(req, res) {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "email and password are required" });
+    }
 
     const user = await UserModel.findOne({ email });
 

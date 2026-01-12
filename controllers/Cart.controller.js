@@ -3,7 +3,7 @@ import ProductModel from "../models/Product.model.js";
 
 export async function getCartItems(req, res) {
   try {
-    const cartItems = await Cart.find({ userId: req.user }).populate(
+    const cartItems = await CartModel.find({ userId: req.user }).populate(
       "productId"
     );
 
@@ -15,15 +15,23 @@ export async function getCartItems(req, res) {
 
 export async function addToCart(req, res) {
   try {
-    const product = await ProductModel.findById(req.body.productId);
+    const { productId, quantity } = req.body;
+
+    if (!productId || !quantity) {
+      return res
+        .status(400)
+        .json({ message: "productId and quantity are required" });
+    }
+
+    const product = await ProductModel.findById(productId);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
 
     const cartItem = await CartModel.create({
       userId: req.user,
-      productId: req.body.productId,
-      quantity: req.body.quantity,
+      productId: productId,
+      quantity: quantity,
     });
 
     return res.json(cartItem);
